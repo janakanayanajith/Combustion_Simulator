@@ -1,0 +1,111 @@
+<html>
+<head>
+<script>
+ window.onload = function() {r()}
+    T=[1923.25,1963.925,1966.35,1984.25,1959.125,1911.475,1836.925,1716.175,1493.175,1400.075]
+    CH4=[0.0010501,2.19803E-05,1.48029E-05,5.27515E-06,5.66765E-06,5.41957E-06,5.27817E-06,2.86877E-06,1.11511E-06,4.79921E-07]
+    NOx=[1.47E-05,2.20E-05,1.48E-05,5.28E-06,5.67E-06,5.42E-06,5.28E-06,2.87E-06,1.12E-06,4.80E-07]
+    O2=[0.01,0.001345875,1963.925,1.48029E-05,5.27515E-06,5.66765E-06,5.41957E-06,5.27817E-06,2.86877E-06,1.11511E-06,4.79921E-07]
+    CO2=[0.1802175,1.1192E-08,1.48029E-05,5.27515E-06,5.66765E-06,5.41957E-06,5.27817E-06,2.86877E-06,1.11511E-06,4.79921E-07]
+    img=[0.5,0.7,0.8,0.85,0.9,0.95,1,1.1,1.2,1.4]
+      
+      
+    function r() {
+document.getElementById('T').innerHTML = T[document.getElementById('eq').value];
+document.getElementById('NOx').innerHTML = NOx[document.getElementById('eq').value]+'ppm';
+document.getElementById('CH4').innerHTML = CH4[document.getElementById('eq').value]+'%';
+document.getElementById('O2').innerHTML = O2[document.getElementById('eq').value]+'%';
+document.getElementById('CO2').innerHTML = CO2[document.getElementById('eq').value]+'%';
+document.getElementById('profile').src = img[document.getElementById('eq').value]+'.png';
+    }
+    </script>
+    <style>
+     #box{
+                float:left; 
+                width:35%;
+                height:100%;
+            }
+                 #middlebox{
+                float:left; 
+
+                width:40%;
+                height:100%;
+            }
+                #rightbox{
+                float:right;
+
+                width:25%;
+                height:100%;
+            }
+    </style>
+</head>
+<body>
+                      <div id ="box">
+                      <h1 style="color: #5e9ca0;">EUSL Combustion Remote Lab</h1>
+                        <div id = "middlebox">
+<br><br>
+<div style="clear: left;">
+<p style="float: left;">Fuel flowrate:&nbsp;</p>
+<p style="margin-top: 13px; float: left;"><span style="color: #00ff00;"><strong>0.04<em>l/s</em></strong></span></p>
+</div>
+<div style="clear: left;">
+<p style="float: left;">Equivalent ratio:&nbsp;</p>
+  <select name="eq" id="eq" style="margin-top: 15px; float: left;"  onchange="r()">
+      <option value="0">0.5</option>
+      <option value="1">0.7</option>
+      <option value="2">0.8</option>
+      <option value="3">0.85</option>
+      <option value="4">0.9</option>
+      <option value="5">0.95</option>
+      <option value="6">1</option>
+      <option value="7">1.1</option>
+      <option value="8">1.2</option>
+      <option value="9">1.4</option>
+</select>
+</div>
+<br>
+
+<p style="clear: left;">Temperature readings:</p>
+<table style="border-collapse: collapse; width: 200px; height: 90px; " border="1">
+<tbody>
+<tr style="height: 18px;">
+<th style="width: 50%; height: 18px;">Temperature (Celsius)</th>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 50%; height: 18px; text-align:center"><p id="T"></p></td>
+</tr>
+</tbody>
+</table>
+<p>Gas concentrations</p>
+<table style="border-collapse: collapse; width: 200px;" border="1">
+<tbody>
+<tr>
+<th style="width: 50%;">Gas</th>
+<th style="width: 50%;">Concentration</th>
+</tr>
+<tr>
+<td style="width: 50%;">CH<sub>4</sub></td>
+<td style="width: 50%;"><p id="CH4"></p></td>
+</tr>
+<tr>
+<td style="width: 50%;">NO<sub>x</sub></td>
+<td style="width: 50%;"><p id="NOx"></p></td>
+</tr>
+<tr>
+<td style="width: 50%;">O<sub>2</sub></td>
+<td style="width: 50%;"><p id="O2"></p></td>
+</tr>
+<tr>
+<td style="width: 50%;">CO<sub>2</sub></td>
+<td style="width: 50%;"><p id="CO2"></p></td>
+</tr>
+</tbody>
+</table>
+            </div>
+
+            <div id = "rightbox">
+<img src="0.5.png" id="profile"  style="width: 300px; height: 550px; object-fit: none;">
+</div>
+</div>
+</body>
+</html>
