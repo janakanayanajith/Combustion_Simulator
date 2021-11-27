@@ -1,62 +1,71 @@
-<html>
-<head>
-<script> </script>
-    <style>
 
-                 #lft{
-                float:left; 
-                //background-color:red;
-                //width:50%;
-                width:352px;
-                //height:100%;
+            function chk() {
+                var ifConnected = window.navigator.onLine;
+                if (ifConnected) {
+                    run();
+                } else {
+                    alert('Make sure you are connected to the internet');
+                }
             }
-
-                 #rgt{
-                //float:left;
-                overflow: hidden;
-                min-width: 352px;
-                //height:100%;
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
             }
-    </style>
-</head>
-<body style="padding: 20px;">
+            google.charts.load('current', {'packages':['gauge']});
+            //google.charts.setOnLoadCallback(drawChart);
 
-                        <div id = "lft">
-                                  <h2 style="color: blue; margin-top: 0em; margin-bottom: 0em;">EUSL Combustion Remote Lab</h2>
-<p style="float: left;  margin-top: 0.2em; margin-bottom: 0em;">Fuel flowrate:&nbsp;</p>
-<p style="float: left;   margin-top: 0.2em; margin-bottom: 0em;"><span style="color: #00ff00; "><strong>0.04<em>l/s </em></strong></span></p>
-     <p style="float: left;   margin-top: 0.2em; margin-bottom: 0em;"> &nbsp;&nbsp;&nbsp; Equivalent ratio:&nbsp;</p>
-    <select name="eq" id="eq" style="float: left;   margin-top: 0.2em; margin-bottom: 0em;"  onchange="r()">
-      <option value="0">0.3</option>
-      <option value="1">0.4</option>
-      <option value="2">0.5</option>
-      <option value="3">0.7</option>
-      <option value="4">0.8</option>
-      <option value="5">0.85</option>
-      <option value="6">0.9</option>
-      <option value="7">0.95</option>
-      <option value="8">1</option>
-      <option value="9">1.1</option>
-      <option value="10">1.2</option>
-      <option value="11">1.4</option>
-</select>
-  <p style=" clear: both; float: left;   margin-top: 0.2em; margin-bottom: 0em;"> Max Temperature: &nbsp;</p> <p id="T"  style="float: left; color: #ff0000;   margin-top: 0.2em; margin-bottom: 0em;">  </p><p  style="float: left;   margin-top: 0.2em; margin-bottom: 0em;">&nbsp; Celsius</p>
-<img src="img/0.5.png" id="profile"  style="clear: both;float: left;   width: 340px; height: 550px; object-fit: none;  ">
-</div>
-<div  id = "rgt">
- <div id = "rgt1" style=" width:50%; float:left;">
-     <div id="T_Chart" style="width: 100%; height: 200px; align:right;"></div>
-     <div id="NOx_Chart" style="width: 100%; height: 200px;"></div><br>
-     <div id="Q_Chart" style="width: 100%; height: 200px;"></div><br>
- </div>
- <div id = "rgt2"  style=" width:50%; float:left; ">
-     <div id="CH4_Chart" style="width: 100%; height: 200px; align:right;"></div>
-     <div id="CO_Chart" style="width: 100%; height: 200px;"></div><br>
-     <div id="H2O_Chart" style="width: 100%; height: 200px;"></div><br>
- </div>
- </div>
-</body>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="./script/data.js"></script>
-<script type="text/javascript" src="./script/drawChart.js"></script>
-</html>
+
+            async function run()
+            {
+                var options = {
+                  width: 600, height: 200,
+                  majorTicks: ['0','1','2','3','4','5','6','7','8','9','10'],
+                  max:10
+                };
+                var x_chart = new google.visualization.Gauge(document.getElementById('x_div'));
+                var y_chart = new google.visualization.Gauge(document.getElementById('s_div'));
+
+            	var X=parseFloat(document.getElementById("Xi").value);
+
+            	var Y=0.4;
+            	var S=0;
+            	var Km=1;
+            	var n=4.12;
+
+            	var time=0;
+            	var xSeries = [];
+                var pSeries = [];
+                var sSeries = [];
+
+                while(true)
+                {
+                    var h=parseFloat(document.getElementById("h").value);
+                    var D = document.getElementById("D").value;
+                    var pH = document.getElementById("pH").value;
+                    var T = document.getElementById("T").value;
+            	    var Si=parseFloat(document.getElementById("Si").value);
+
+                    var mumax=-40.5+11.78*pH-0.0691*pH**2+1.65*T+0.003*T**2-0.468*pH*T;
+                    var mu=mumax*S/(Km+S)
+                    var r1=mu*X;
+                    var dxdt=(mu-D)*X;
+                    var dsdt=D*(Si-S)-(X/Y)*mu;
+
+                    X=X+h*dxdt;
+                    S=S+h*dsdt;
+                    time=time+h;
+                    console.log(h, X, S,dxdt, dsdt, mu, time);
+                    document.getElementById("time").innerHTML=time;;
+                    var x_data = google.visualization.arrayToDataTable([
+                      ['Label', 'Value'],
+                      ['Biomass (X)', X],
+                    ]);
+                    var s_data = google.visualization.arrayToDataTable([
+                      ['Label', 'Value'],
+                      ['Substrate (S)', S],
+                    ]);
+                    x_chart.draw(x_data, options);
+                    y_chart.draw(s_data, options);
+                    await sleep(50);
+
+                }
+            }
