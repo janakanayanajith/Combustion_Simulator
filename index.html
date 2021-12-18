@@ -1,10 +1,10 @@
 <html>
 <head>
-<script> </script>
     <style>
 
                  #lft{
-                float:left; 
+                float:left;
+                position: relative;
                 //background-color:red;
                 //width:50%;
                 width:352px;
@@ -12,21 +12,22 @@
             }
 
                  #rgt{
-                //float:left;
+                float:left;
+                //background-color:green;
                 overflow: hidden;
                 min-width: 352px;
+                width:50%;
                 //height:100%;
             }
     </style>
 </head>
-<body style="padding: 20px;">
-
-                        <div id = "lft">
-                                  <h2 style="color: blue; margin-top: 0em; margin-bottom: 0em;">EUSL Combustion Remote Lab</h2>
-<p style="float: left;  margin-top: 0.2em; margin-bottom: 0em;">Fuel flowrate:&nbsp;</p>
-<p style="float: left;   margin-top: 0.2em; margin-bottom: 0em;"><span style="color: #00ff00; "><strong>0.04<em>l/s </em></strong></span></p>
-     <p style="float: left;   margin-top: 0.2em; margin-bottom: 0em;"> &nbsp;&nbsp;&nbsp; Equivalent ratio:&nbsp;</p>
-    <select name="eq" id="eq" style="float: left;   margin-top: 0.2em; margin-bottom: 0em;"  onchange="r()">
+<body style="padding: 20px; background-color:black; color:white;">
+<div id = "lft">
+<h2 style="color: red; margin-top: 0em; margin-bottom: 0em;">EUSL Combustion Simulator</h2>
+<p style=" top: 90%; left: -2%; position: absolute; margin-top: 0.2em; margin-bottom: 0em;">Fuel flowrate:&nbsp;</p>
+<p style=" top: 90%; left: 25%; position: absolute; margin-top: 0.2em; margin-bottom: 0em;"><span style="color: #00ff00; "><strong>0.04<em>l/s </em></strong></span></p>
+     <p style="top: 67%; left: -10%; position: absolute;   margin-top: 0.2em; margin-bottom: 0em;"> &nbsp;&nbsp;&nbsp; Equivalent ratio:&nbsp;</p>
+    <select name="eq" id="eq" style="top: 67%; left: 26%; position: absolute; margin-top: 0.2em; margin-bottom: 0em;"  onchange="r()">
       <option value="0">0.3</option>
       <option value="1">0.4</option>
       <option value="2">0.5</option>
@@ -40,21 +41,27 @@
       <option value="10">1.2</option>
       <option value="11">1.4</option>
 </select>
-  <p style=" clear: both; float: left;   margin-top: 0.2em; margin-bottom: 0em;"> Max Temperature: &nbsp;</p> <p id="T"  style="float: left; color: #ff0000;   margin-top: 0.2em; margin-bottom: 0em;">  </p><p  style="float: left;   margin-top: 0.2em; margin-bottom: 0em;">&nbsp; Celsius</p>
-<img src="img/0.5.png" id="profile"  style="clear: both;float: left;   width: 340px; height: 550px; object-fit: none;  ">
+  <p style="top: 25%; left: 27%; position: absolute; margin-top: 0.2em; margin-bottom: 0em;"> Max flame temperature: &nbsp;</p>
+    <p id="T"  style="top: 25%; left: 72%; position: absolute; float: left; color: #ff0000;   margin-top: 0.2em; margin-bottom: 0em;">  </p>
+    <p  style="top: 67%; left: 40%; position: absolute; margin-top: 0.2em; margin-bottom: 0em;">&nbsp; Celsius</p>
+    <img src="bg.jpg"  style="clear: both;float: left;   width: 340px; height: 550px; object-fit: none;  ">
 </div>
 <div  id = "rgt">
- <div id = "rgt1" style=" width:50%; float:left;">
-     <div id="T_Chart" style="width: 100%; height: 200px; align:right;"></div>
-     <div id="NOx_Chart" style="width: 100%; height: 200px;"></div><br>
-     <div id="Q_Chart" style="width: 100%; height: 200px;"></div><br>
+     <div id = "rgt1" style=" width:50%; float:left;">
+         <div id="T_Chart" style="width: 100%; height: 200px; "></div>
+         <div id="NOx_Chart" style="width: 100%; height: 200px;"></div><br>
+         <div id="Q_Chart" style="width: 100%; height: 200px;"></div><br>
+     </div>
+     <div id = "rgt2"  style=" width:50%; float:left; ">
+         <div id="CH4_Chart" style="width: 100%; height: 200px; "></div>
+         <div id="CO_Chart" style="width: 100%; height: 200px;"></div><br>
+         <div id="H2O_Chart" style="width: 100%; height: 200px;"></div><br>
+     </div>
  </div>
- <div id = "rgt2"  style=" width:50%; float:left; ">
-     <div id="CH4_Chart" style="width: 100%; height: 200px; align:right;"></div>
-     <div id="CO_Chart" style="width: 100%; height: 200px;"></div><br>
-     <div id="H2O_Chart" style="width: 100%; height: 200px;"></div><br>
- </div>
- </div>
+<div>
+    <p align="center">Temperature Profile (C) <br><br><br><br>
+<img src="img/0.5.png" id="profile" style="   overflow: hidden; float: left; width: 20%;   background-color:green; ">
+</div>
 </body>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="./script/data.js"></script>
