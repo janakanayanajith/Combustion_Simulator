@@ -142,7 +142,7 @@ google.charts.load('current', {'packages':['corechart']});
         var options = {
           title: 'H2O profile',
           hAxis: {title: 'Axial Distance (m)', minValue: 0},
-          vAxis: {title: 'Heat release (J/m3s)', minValue: 0},
+          vAxis: {title: 'H2O (kg/m3)', minValue: 0},
           legend: 'none',
           curveType: 'function',
           pointSize: 0,
