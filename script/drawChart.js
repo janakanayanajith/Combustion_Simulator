@@ -53,7 +53,7 @@ google.charts.load('current', {'packages':['corechart']});
 
      function drawNOxChart() {
 
-        chtData=[['Axial Distance', 'Temperature']]
+        chtData=[['Axial Distance', 'NOx']]
         for (let i = 0; i < AxialDistance.length; i++) {
         chtData.push([AxialDistance[i],NOxp[document.getElementById('eq').value][i]]);
         }
@@ -61,7 +61,7 @@ google.charts.load('current', {'packages':['corechart']});
         var options = {
           title: 'NOx profile',
           hAxis: {title: 'Axial Distance (m)', minValue: 0},
-          vAxis: {title: 'NOx (kg/m3)', minValue: 0},
+          vAxis: {title: 'NOx (kg/m3) E+6', minValue: 0},
           legend: 'none',
           curveType: 'function',
           pointSize: 0,
@@ -101,7 +101,7 @@ google.charts.load('current', {'packages':['corechart']});
             var options = {
               title: 'CH4 profile',
               hAxis: {title: 'Axial Distance (m)', minValue: 0},
-              vAxis: {title: 'CH4 mass fraction(C)', minValue: 0},
+              vAxis: {title: 'CH4 (kg/m3)', minValue: 0},
               legend: 'none',
               curveType: 'function',
               pointSize: 0,
@@ -151,5 +151,3 @@ google.charts.load('current', {'packages':['corechart']});
                     var chart = new google.visualization.ComboChart(document.getElementById('H2O_Chart'));
         chart.draw(data, options);
 }
-
-
