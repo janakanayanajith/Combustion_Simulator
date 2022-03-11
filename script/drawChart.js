@@ -40,7 +40,7 @@ google.charts.load('current', {'packages':['corechart']});
         var options = {
           title: 'Temperature profile',
           hAxis: {title: 'Axial Distance (m)', minValue: 0},
-          vAxis: {title: 'Temperature (C)', minValue: 0, maxValue: 2200},
+          vAxis: {title: 'Temperature (K)', minValue: 0, maxValue: 2200},
           legend: 'none',
           curveType: 'function',
           pointSize: 0,
