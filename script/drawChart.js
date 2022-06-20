@@ -61,7 +61,7 @@ google.charts.load('current', {'packages':['corechart']});
         var options = {
           title: 'NOx profile',
           hAxis: {title: 'Axial Distance (m)', minValue: 0},
-          vAxis: {title: 'NOx (kg/m3) E+6', minValue: 0},
+          vAxis: {title: 'NOx (kg/m3)', minValue: 0},
           legend: 'none',
           curveType: 'function',
           pointSize: 0,
