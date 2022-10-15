@@ -2,6 +2,7 @@
 
     Tmax=[1848.6,1873,1904.6,1967.9,1994.2,2014.1,2028.8,2025.9,2001.4,1932.9,1775.4,1649.9]
     img=[0.3,0.4,0.5,0.7,0.8,0.85,0.9,0.95,1,1.1,1.2,1.4]
+    flameCL=['#ff0000','#ff8800','#ff9900','#ffbb00','#ffdd00','#ffff00','#cc55ff','#aa55ff','#8855ff','#0000ff','#0000ff','#0000ff']
  function resize () {
     drawTChart();
     drawNOxChart();
@@ -15,6 +16,7 @@ window.onresize  = resize;
 
 
     function r() {
+    document.getElementById('fire').style.background = flameCL[document.getElementById('eq').value]     
     drawTChart();
     drawNOxChart();
     drawQChart();
